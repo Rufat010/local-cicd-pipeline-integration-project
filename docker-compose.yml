@@ -1,0 +1,18 @@
+services:
+  jenkins:
+    build:
+      context: ./jenkins
+    container_name: jenkins
+    # Runs as root so it can read/write the mounted Docker socket below.
+    # Fine for a local class project; not something you'd do in production.
+    user: root
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+
+volumes:
+  jenkins_home:
