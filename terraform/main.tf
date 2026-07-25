@@ -17,7 +17,7 @@ data "docker_image" "app" {
 
 resource "docker_container" "app" {
   name  = var.container_name
-  image = data.docker_image.app.image_id
+  image = data.docker_image.app.id
 
   ports {
     internal = 5000
